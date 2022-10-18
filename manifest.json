@@ -1,0 +1,7 @@
+{
+    "name": "MonoArk",
+    "description": "Chrono Ark modding API for operability and reusability.",
+    "version_number": "0.1.0",
+    "dependencies": [],
+    "website_url": "https://github.com/frostu8/MonoArk"
+}

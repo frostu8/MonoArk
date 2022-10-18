@@ -1,3 +1,6 @@
 # Ignore build files
 [Bb]in/
 [Oo]bj/
+
+# Thunderstore build file
+/.thunderstore/

@@ -4,10 +4,10 @@ using System;
 namespace MonoArk
 {
     /// <summary>
-    /// Provides modular access to the <see cref="TempSaveData"/> class, which
-    /// stores global information about each run that persists in the save file.
+    /// Provides modular access to the <see cref="Skill"/> class, which stores
+    /// information about each skill loaded in the game system.
     /// </summary>
-    public static class ModRun
+    public static class ModSkill
     {
         /// <summary>
         /// Gets mod extension of type <typeparamref name="T" />. If it does not
@@ -15,12 +15,12 @@ namespace MonoArk
         /// </summary>
         /// <typeparam name="T">The type of the mod extension.</typeparam>
         /// <returns> The extension.</returns>
-        public static T GetModRun<T>()
+        public static T GetModSkill<T>(this Skill skill)
             where T : new()
         {
-            return ((ModExtensions) typeof(TempSaveData)
+            return ((ModExtensions) typeof(Skill)
                 .GetField("Extensions")
-                .GetValue(PlayData.TSavedata))
+                .GetValue(skill))
                 .Get<T>();
         }
 
@@ -35,11 +35,11 @@ namespace MonoArk
         /// </param>
         /// <typeparam name="T">The type of the mod extension.</typeparam>
         /// <returns> The extension.</returns>
-        public static T GetModRun<T>(Func<T> def)
+        public static T GetModSkill<T>(this Skill skill, Func<T> def)
         {
-            return ((ModExtensions) typeof(TempSaveData)
+            return ((ModExtensions) typeof(Skill)
                 .GetField("Extensions")
-                .GetValue(PlayData.TSavedata))
+                .GetValue(skill))
                 .Get<T>(def);
         }
     }

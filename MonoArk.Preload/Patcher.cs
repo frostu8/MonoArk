@@ -18,7 +18,7 @@ public static class Patcher
         {
             foreach (var type in module.Types)
             {
-                if (type.FullName == "TempSaveData")
+                if (type.FullName == "TempSaveData" || type.FullName == "Skill")
                 {
                     AddExtensions(module, type);
                 }

@@ -18,10 +18,7 @@ namespace MonoArk
         public static T GetModSkill<T>(this Skill skill)
             where T : new()
         {
-            return ((ModExtensions) typeof(Skill)
-                .GetField("Extensions")
-                .GetValue(skill))
-                .Get<T>();
+            return GetModExtensions(skill).Get<T>();
         }
 
         /// <summary>
@@ -37,10 +34,15 @@ namespace MonoArk
         /// <returns> The extension.</returns>
         public static T GetModSkill<T>(this Skill skill, Func<T> def)
         {
-            return ((ModExtensions) typeof(Skill)
+            return GetModExtensions(skill).Get<T>(def);
+        }
+
+        // moved to its own function if we ever add performant extension access
+        static ModExtensions GetModExtensions(Skill val)
+        {
+            return (ModExtensions) typeof(Skill)
                 .GetField("Extensions")
-                .GetValue(skill))
-                .Get<T>(def);
+                .GetValue(val);
         }
     }
 }

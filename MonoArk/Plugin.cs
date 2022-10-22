@@ -3,6 +3,8 @@ using BepInEx.Logging;
 using System.IO;
 using System.Text;
 using System.Xml.Serialization;
+using System.Collections.Generic;
+using HarmonyLib;
 
 namespace MonoArk
 {

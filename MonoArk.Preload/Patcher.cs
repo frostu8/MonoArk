@@ -10,6 +10,8 @@ public static class Patcher
 
     public static ModuleDefinition Plugin;
 
+    private static readonly string[] addExtensions = new[] { "TempSaveData", "Skill", "Skill_Extended" };
+
     public static void Patch(AssemblyDefinition assembly) {
         // open plugin definition
         Plugin = ModuleDefinition.ReadModule("BepInEx/plugins/MonoArk.dll", new ReaderParameters { ReadWrite = false });
@@ -18,7 +20,7 @@ public static class Patcher
         {
             foreach (var type in module.Types)
             {
-                if (type.FullName == "TempSaveData" || type.FullName == "Skill")
+                if (addExtensions.Contains(type.FullName))
                 {
                     AddExtensions(module, type);
                 }
